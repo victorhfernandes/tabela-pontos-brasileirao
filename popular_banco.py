@@ -133,7 +133,8 @@ for i, data in enumerate(datas):
     query = f'INSERT INTO tb_jogo (cd_rodada, dt_jogo, time_mandante, time_visitante, formacao_mandante, formacao_visitante, tecnico_mandante, tecnico_visitante, nm_arena, placar_mandante, placar_visitante) VALUES ({rodada[i]}, STR_TO_DATE("{data} {horas[i]}:00","%d/%m/%Y %H:%i:%s"), "{times[i]}", "{visitantes[i]}", "{formacao_mandante[i]}", "{formacao_visitante[i]}", "{tecnico_mandante[i] or ""}", "{tecnico_visitante[i] or ""}", "{arenas[i]}", {placar_mandante[i]}, {placar_visitante[i]})'
     cursor.execute(query)
     connection.commit()
-    
+
+# Tabela de pontos    
 query = f'SELECT IF(dt_jogo BETWEEN "2021-01-01 00:00:00" AND "2021-02-26 00:00:00", 2020, YEAR(dt_jogo)), time_mandante, placar_mandante, time_visitante, placar_visitante FROM tb_jogo;'
 cursor.execute(query)
 result = cursor.fetchall()
